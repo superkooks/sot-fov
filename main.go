@@ -14,6 +14,8 @@ import (
 	"syscall"
 )
 
+const fov = 120
+
 // Set to 0 to find game automatically
 var pid = 0
 
@@ -119,7 +121,7 @@ func trapAndListen(funcStart uintptr) {
 
 		// Run instruction to update fov at [rcx+0x40]
 		instr := bytes.NewBuffer([]byte{0xc7, 0x41, 0x40})
-		binary.Write(instr, binary.LittleEndian, float32(120.0)/float32(78.0))
+		binary.Write(instr, binary.LittleEndian, float32(120.0)/float32(fov))
 
 		fmt.Println("running instr:", hex.EncodeToString(instr.Bytes()))
 		runInstruction(instr.Bytes(), passedRcx)
