@@ -119,7 +119,8 @@ func trapAndListen(funcStart uintptr) {
 			panic("woops")
 		}
 
-		// Run instruction to update fov at [rcx+0x40]
+		// Run instruction to update fov
+		// mov dword ptr [rcx+0x40], 0xfov
 		instr := bytes.NewBuffer([]byte{0xc7, 0x41, 0x40})
 		binary.Write(instr, binary.LittleEndian, float32(120.0)/float32(fov))
 
