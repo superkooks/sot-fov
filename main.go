@@ -122,7 +122,7 @@ func trapAndListen(funcStart uintptr) {
 		// Run instruction to update fov
 		// mov dword ptr [rcx+0x40], 0xfov
 		instr := bytes.NewBuffer([]byte{0xc7, 0x41, 0x40})
-		binary.Write(instr, binary.LittleEndian, float32(120.0)/float32(fov))
+		binary.Write(instr, binary.LittleEndian, float32(fov)/float32(78))
 
 		fmt.Println("running instr:", hex.EncodeToString(instr.Bytes()))
 		runInstruction(instr.Bytes(), passedRcx)
